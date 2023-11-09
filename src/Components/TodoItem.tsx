@@ -1,11 +1,11 @@
 import React from 'react'
 
-interface TitemProps {
+interface TodoProps {
   content: string;
   completed: boolean;
 }
 
-export default function TodoItem({ content, completed }:TitemProps) {
+export default function TodoItem({ content, completed }: TodoProps) {
   return (
     <li className="todoItem">
       <input type="checkbox" name="" id="" checked={completed}/>

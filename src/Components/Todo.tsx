@@ -19,6 +19,7 @@ export default function Todo() {
   const inputTypingHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputContent(e.target.value);
   }
+  
 
   const addTodoHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,8 +29,8 @@ export default function Todo() {
       content: inputContent,
       completed: false,
     };
+    
     setTodos([... todos, todo]);
-
     setInputContent("");
   }
   
@@ -38,9 +39,21 @@ export default function Todo() {
     alert("할일이 삭제되었습니다.")
   };
 
+  const editTodoHandler = (newTodo: TodosProps): void => {
+    const newTodos = todos.map((item) => {
+      if (item.id === newTodo.id) {
+        return newTodo;
+      } else {
+        return item;
+      }
+    });
+
+    setTodos(newTodos);
+  };
+
   return (
     <div id="container" className="todo">
-      <TodoList todos={todos} onClickDelete={removeTodoHandler}/>
+      <TodoList todos={todos} onClickDelete={removeTodoHandler} onClickUpdate={editTodoHandler} />
       <TodoForm onChange={inputTypingHandler} onSubmit={addTodoHandler} inputContent={inputContent} />
     </div>
   )

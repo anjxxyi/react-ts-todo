@@ -32,10 +32,15 @@ export default function Todo() {
 
     setInputContent("");
   }
+  
+  const removeTodoHandler = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id))
+    alert("할일이 삭제되었습니다.")
+  };
 
   return (
     <div id="container" className="todo">
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onClickDelete={removeTodoHandler}/>
       <TodoForm onChange={inputTypingHandler} onSubmit={addTodoHandler} inputContent={inputContent} />
     </div>
   )
